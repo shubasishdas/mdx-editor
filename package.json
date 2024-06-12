@@ -1,7 +1,6 @@
 {
   "name": "@mdxeditor/editor",
   "author": "Petyo Ivanov",
-  "homepage": "https://mdxeditor.dev/",
   "bugs": {
     "url": "https://github.com/mdx-editor/editor/issues",
     "email": "petyo@virtuoso.dev"
