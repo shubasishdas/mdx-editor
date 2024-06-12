@@ -7,20 +7,15 @@ import {
   COMMAND_PRIORITY_CRITICAL,
   COMMAND_PRIORITY_EDITOR,
   COMMAND_PRIORITY_HIGH,
-  DecoratorNode,
-  EditorConfig,
   KEY_BACKSPACE_COMMAND,
-  LexicalEditor,
   SELECTION_CHANGE_COMMAND,
   createEditor
 } from 'lexical'
 import * as Mdast from 'mdast'
-import { Node } from 'unist'
 import React from 'react'
 import {
   NESTED_EDITOR_UPDATED_COMMAND,
   codeBlockEditorDescriptors$,
-  directiveDescriptors$,
   editorInFocus$,
   exportVisitors$,
   importVisitors$,
@@ -41,50 +36,11 @@ import { importMdastTreeToLexical } from '../../importMarkdownToLexical'
 import styles from '../../styles/ui.module.css'
 import { SharedHistoryPlugin } from './SharedHistoryPlugin'
 import { mergeRegister } from '@lexical/utils'
-import { VoidEmitter } from '../../utils/voidEmitter'
 import { isPartOftheEditorUI } from '../../utils/isPartOftheEditorUI'
 import { useCellValues, usePublisher } from '@mdxeditor/gurx'
-import { DirectiveNode } from '../directives'
 import { LexicalJsxNode } from '../jsx/LexicalJsxNode'
-
-/**
- * The value of the {@link NestedEditorsContext} React context.
- * @group Custom Editor Primitives
- */
-export interface NestedEditorsContextValue<T extends Node> {
-  /**
-   * The parent lexical editor
-   */
-  parentEditor: LexicalEditor
-  /**
-   * The parent editor config
-   */
-  config: EditorConfig
-  /**
-   * The mdast node that is being edited
-   */
-  mdastNode: T
-  /**
-   * The lexical node that is being edited
-   */
-  lexicalNode: DecoratorNode<any> & {
-    /**
-     * Use this method to update the mdast node. This will also update the mdast tree of the parent editor.
-     */
-    setMdastNode: (mdastNode: any) => void
-  }
-  /**
-   * Subscribe to the emitter and implement the logic to focus the custom editor.
-   */
-  focusEmitter: VoidEmitter
-}
-
-/**
- * Use this context to provide the necessary values to the {@link NestedLexicalEditor} React component.
- * Place it as a wrapper in your custom lexical node decorators.
- * @group Custom Editor Primitives
- */
-export const NestedEditorsContext = React.createContext<NestedEditorsContextValue<Node> | undefined>(undefined)
+import { NestedEditorsContextValue } from '../directives/utils'
+import { DirectiveNode, NestedEditorsContext, directiveDescriptors$ } from '../directives/DirectiveNode'
 
 /**
  * A hook to get the current {@link NestedEditorsContext} value. Use this in your custom editor components.

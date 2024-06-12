@@ -1,10 +1,8 @@
 import React from 'react'
 import {
-  CodeBlockEditorDescriptor,
   DiffSourceToggleWrapper,
   GenericJsxEditor,
   InsertFrontmatter,
-  JsxComponentDescriptor,
   MDXEditor,
   MDXEditorMethods,
   UndoRedo,
@@ -31,6 +29,8 @@ import jsxMarkdown from './assets/jsx.md?raw'
 import tableMarkdown from './assets/table.md?raw'
 
 import { virtuosoSampleSandpackConfig } from './_boilerplate'
+import { JsxComponentDescriptor } from '@/plugins/jsx/utils'
+import { CodeBlockEditorDescriptor } from '@/plugins/codeblock/utils'
 
 const helloMarkdown = `Hello <u>world am **here**</u> more <u>under</u> line. Some \`code with backticks\` and <code>code tag</code> `
 
