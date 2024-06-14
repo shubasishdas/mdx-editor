@@ -47,7 +47,7 @@ import { $wrapNodeInElement, mergeRegister } from '@lexical/utils'
 import classNames from 'classnames'
 import ImageResizer from './ImageResizer'
 import styles from '../../styles/ui.module.css'
-import { canDropImage, getDragImageData, getDragSelection } from './utils'
+import { canDropImage, getDragImageData, getDragSelection, imageUploadHandler$, saveImage$ } from './utils'
 
 /**
  * Close the image dialog.
@@ -120,12 +120,6 @@ export interface InactiveImageDialogState {
 export interface NewImageDialogState {
   type: 'new'
 }
-
-/**
- * Saves the data from the image dialog
- * @group Image
- */
-export const saveImage$ = Signal<SaveImageParameters>()
 
 /**
  * @group Image
@@ -267,12 +261,6 @@ function LazyImage({
     />
   )
 }
-
-/**
- * Holds the image upload handler callback.
- * @group Image
- */
-export const imageUploadHandler$ = Cell<ImageUploadHandler>(null)
 
 export const internalInsertImage$ = Signal<SrcImageParameters>((r) => {
   r.sub(r.pipe(internalInsertImage$, withLatestFrom(activeEditor$)), ([values, theEditor]) => {
