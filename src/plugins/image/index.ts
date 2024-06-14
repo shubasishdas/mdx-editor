@@ -6,7 +6,7 @@ import { ImageDialog } from './ImageDialog'
 import { CreateImageNodeParameters, ImageNode, imageDialogState$, internalInsertImage$ } from './ImageNode'
 import { LexicalImageVisitor } from './LexicalImageVisitor'
 import { MdastHtmlImageVisitor, MdastImageVisitor, MdastJsxImageVisitor } from './MdastImageVisitor'
-import { imageAutocompleteSuggestions$ } from './utils'
+import { imageAutocompleteSuggestions$, imageUploadHandler$ } from './utils'
 
 export * from './ImageNode'
 
@@ -88,12 +88,6 @@ export const insertImage$ = Signal<InsertImageParameters>((r) => {
  * @group Image
  */
 export const disableImageResize$ = Cell<boolean>(false)
-
-/**
- * Holds the image upload handler callback.
- * @group Image
- */
-export const imageUploadHandler$ = Cell<ImageUploadHandler>(null)
 
 /**
  * Holds the image preview handler callback.
